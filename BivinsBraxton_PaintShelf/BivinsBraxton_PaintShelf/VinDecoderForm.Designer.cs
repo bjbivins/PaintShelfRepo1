@@ -51,7 +51,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(149, 79);
+            this.label1.Location = new System.Drawing.Point(210, 263);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 13);
             this.label1.TabIndex = 0;
@@ -60,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(149, 104);
+            this.label2.Location = new System.Drawing.Point(210, 288);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 1;
@@ -68,15 +68,15 @@
             // 
             // VinTText
             // 
-            this.VinTText.Location = new System.Drawing.Point(217, 76);
+            this.VinTText.Location = new System.Drawing.Point(278, 260);
             this.VinTText.Name = "VinTText";
-            this.VinTText.Size = new System.Drawing.Size(120, 20);
+            this.VinTText.Size = new System.Drawing.Size(208, 20);
             this.VinTText.TabIndex = 4;
             this.VinTText.TextChanged += new System.EventHandler(this.VinTText_TextChanged);
             // 
             // YearUD
             // 
-            this.YearUD.Location = new System.Drawing.Point(217, 102);
+            this.YearUD.Location = new System.Drawing.Point(278, 286);
             this.YearUD.Maximum = new decimal(new int[] {
             2050,
             0,
@@ -88,7 +88,7 @@
             0,
             0});
             this.YearUD.Name = "YearUD";
-            this.YearUD.Size = new System.Drawing.Size(120, 20);
+            this.YearUD.Size = new System.Drawing.Size(208, 20);
             this.YearUD.TabIndex = 5;
             this.YearUD.Value = new decimal(new int[] {
             1900,
@@ -100,9 +100,9 @@
             // vinDecodeButton
             // 
             this.vinDecodeButton.Enabled = false;
-            this.vinDecodeButton.Location = new System.Drawing.Point(217, 128);
+            this.vinDecodeButton.Location = new System.Drawing.Point(180, 341);
             this.vinDecodeButton.Name = "vinDecodeButton";
-            this.vinDecodeButton.Size = new System.Drawing.Size(120, 23);
+            this.vinDecodeButton.Size = new System.Drawing.Size(306, 109);
             this.vinDecodeButton.TabIndex = 6;
             this.vinDecodeButton.Text = "Decode VIN";
             this.vinDecodeButton.UseVisualStyleBackColor = true;
@@ -110,41 +110,41 @@
             // 
             // makeText
             // 
-            this.makeText.Location = new System.Drawing.Point(217, 157);
+            this.makeText.Location = new System.Drawing.Point(278, 518);
             this.makeText.Name = "makeText";
             this.makeText.ReadOnly = true;
-            this.makeText.Size = new System.Drawing.Size(120, 20);
+            this.makeText.Size = new System.Drawing.Size(208, 20);
             this.makeText.TabIndex = 7;
             // 
             // modelText
             // 
-            this.modelText.Location = new System.Drawing.Point(217, 183);
+            this.modelText.Location = new System.Drawing.Point(278, 544);
             this.modelText.Name = "modelText";
             this.modelText.ReadOnly = true;
-            this.modelText.Size = new System.Drawing.Size(120, 20);
+            this.modelText.Size = new System.Drawing.Size(208, 20);
             this.modelText.TabIndex = 8;
             // 
             // PaintCodeText
             // 
-            this.PaintCodeText.Location = new System.Drawing.Point(217, 209);
+            this.PaintCodeText.Location = new System.Drawing.Point(278, 570);
             this.PaintCodeText.Name = "PaintCodeText";
             this.PaintCodeText.ReadOnly = true;
-            this.PaintCodeText.Size = new System.Drawing.Size(120, 20);
+            this.PaintCodeText.Size = new System.Drawing.Size(208, 20);
             this.PaintCodeText.TabIndex = 9;
             // 
             // PaintNameText
             // 
             this.PaintNameText.Enabled = false;
-            this.PaintNameText.Location = new System.Drawing.Point(217, 235);
+            this.PaintNameText.Location = new System.Drawing.Point(278, 596);
             this.PaintNameText.Name = "PaintNameText";
-            this.PaintNameText.Size = new System.Drawing.Size(120, 20);
+            this.PaintNameText.Size = new System.Drawing.Size(208, 20);
             this.PaintNameText.TabIndex = 10;
             this.PaintNameText.TextChanged += new System.EventHandler(this.PaintNameText_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(149, 160);
+            this.label3.Location = new System.Drawing.Point(210, 521);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 11;
@@ -153,7 +153,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(149, 186);
+            this.label4.Location = new System.Drawing.Point(210, 544);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 12;
@@ -162,7 +162,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(149, 212);
+            this.label5.Location = new System.Drawing.Point(210, 570);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 13;
@@ -171,7 +171,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(149, 238);
+            this.label6.Location = new System.Drawing.Point(210, 599);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 13);
             this.label6.TabIndex = 14;
@@ -194,16 +194,16 @@
             "Purple",
             "White",
             "Special"});
-            this.colorDrop.Location = new System.Drawing.Point(216, 261);
+            this.colorDrop.Location = new System.Drawing.Point(278, 622);
             this.colorDrop.Name = "colorDrop";
-            this.colorDrop.Size = new System.Drawing.Size(121, 21);
+            this.colorDrop.Size = new System.Drawing.Size(208, 21);
             this.colorDrop.TabIndex = 15;
             this.colorDrop.SelectedIndexChanged += new System.EventHandler(this.colorDrop_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(149, 264);
+            this.label7.Location = new System.Drawing.Point(210, 625);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 16;
@@ -212,9 +212,9 @@
             // AddPaint
             // 
             this.AddPaint.Enabled = false;
-            this.AddPaint.Location = new System.Drawing.Point(216, 288);
+            this.AddPaint.Location = new System.Drawing.Point(180, 665);
             this.AddPaint.Name = "AddPaint";
-            this.AddPaint.Size = new System.Drawing.Size(121, 23);
+            this.AddPaint.Size = new System.Drawing.Size(306, 75);
             this.AddPaint.TabIndex = 17;
             this.AddPaint.Text = "Add Paint";
             this.AddPaint.UseVisualStyleBackColor = true;
@@ -222,9 +222,9 @@
             // 
             // HomeButton
             // 
-            this.HomeButton.Location = new System.Drawing.Point(216, 317);
+            this.HomeButton.Location = new System.Drawing.Point(238, 801);
             this.HomeButton.Name = "HomeButton";
-            this.HomeButton.Size = new System.Drawing.Size(121, 23);
+            this.HomeButton.Size = new System.Drawing.Size(180, 104);
             this.HomeButton.TabIndex = 18;
             this.HomeButton.Text = "Home";
             this.HomeButton.UseVisualStyleBackColor = true;

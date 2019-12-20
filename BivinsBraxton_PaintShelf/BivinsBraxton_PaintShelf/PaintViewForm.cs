@@ -271,14 +271,14 @@ namespace BivinsBraxton_PaintShelf
 
             for (int i = 0; i < colors.Length; i++)
             {
-                if (ColorDrop.Text.ToUpper() == colors[i].ToString())
+                if (ColorDrop.Text.ToUpper() == colors[i].ToString()) // Get Correct color category
                 {
                     int theI = 0;
                     theI = i + 1;
                     colorID = theI;
                 }
             }
-            AddNewPaint(MakeText.Text, year, pntCodeText.Text, PntNameText.Text, colorID);
+            AddNewPaint(MakeText.Text, year, pntCodeText.Text, PntNameText.Text, colorID); // Add new paint to database
         }
 
         private void allFilled() // If all text boxes are filled and edit & delete button are locked, unlock add paint button to store a new item
