@@ -27,7 +27,6 @@ C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\bin\Debug\MySql.Data.xml
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\bin\Debug\Renci.SshNet.xml
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.csprojAssemblyReference.cache
-C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.Form1.resources
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.Properties.Resources.resources
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.csproj.GenerateResource.cache
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.csproj.CoreCompileInputs.cache
@@ -35,3 +34,4 @@ C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.exe
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.pdb
 C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.PaintViewForm.resources
+C:\Users\Braxton\Desktop\PaintShelf_Repo\PaintShelfRepo\BivinsBraxton_PaintShelf\BivinsBraxton_PaintShelf\obj\Debug\BivinsBraxton_PaintShelf.Home.resources

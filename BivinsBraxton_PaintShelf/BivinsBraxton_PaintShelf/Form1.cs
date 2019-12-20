@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
 using System.Xml;
@@ -36,13 +36,13 @@ namespace BivinsBraxton_PaintShelf
         // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/5UXWX7C5*BA?format=xml&modelyear=2011
 
 
-        string startingAPI = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/"; // Begining Of API call
+        string startingAPI = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/"; // Begining Of API call
         string midAPI = "?format=xml&modelyear="; // API search Data
         string VIN_API = "5UXWX7C5*BA"; // VIN for VIN Decode
         string YEAR_API = "2011"; // Year for VIN Decode
         string apiEndPoint; // End of API Call
-        //string make;
-        //string model;
+        string make;
+        string model;
 
         private void BuildAPI() // Build entire API String
         {
@@ -51,8 +51,8 @@ namespace BivinsBraxton_PaintShelf
 
         private void ReadFromAPI() // Read Data From API String
         {
-          //  make = "";
-          //  model = "";
+            make = "";
+            model = "";
             //string pnt_Code = "";
             // string pnt_Name = "";
 
@@ -60,33 +60,23 @@ namespace BivinsBraxton_PaintShelf
             {
                 while(apiData.Read())
                 {
-                    // make = XmlConvert.DecodeName("156");
-                       // make = apiData.GetAttribute("Make");
 
-                    //apiData.GetAttribute("Make");
-                    
-                    //if (apiData.Name == "DecodedVariable")
-                    //{
-                    //    if (apiData.Value == "VariableId")
-                    //    {
-                    //    make = apiData.GetAttribute(26);
-
-                    //    MessageBox.Show(make);
-                    //    }
-                    //}
-
-
-                    if (apiData.Value == "Make")
+                    /*
+                        <DecodedVariable>
+                        <VariableId>26</VariableId>
+                        <Variable>Make</Variable>
+                        <ValueId>452</ValueId>
+                        <Value>BMW</Value>
+                        </DecodedVariable>
+                     */
+                    if (apiData.Name == "Make") // LANDS
                     {
-
-                        //make = apiData.GetAttribute("Make").;
-                        //make = apiData.Name;
-                        
+                        make = apiData.ReadElementContentAsString();
                     }
 
                     if (apiData.Name == "Model")
                     {
-                      //  model = apiData.ReadElementContentAsString();
+                        model = apiData.ReadElementContentAsString();
                     }
                 }
             }
@@ -99,7 +89,7 @@ namespace BivinsBraxton_PaintShelf
             BuildAPI(); // Build Api String
             ReadFromAPI(); // Read data from API
 
-            // MessageBox.Show("Make: " + make + "Model: " + model);
+             MessageBox.Show("Make: " + make + " Model: " + model);
         }
 
         void HandleClientWindowSize() // Code Given for iPhone background
