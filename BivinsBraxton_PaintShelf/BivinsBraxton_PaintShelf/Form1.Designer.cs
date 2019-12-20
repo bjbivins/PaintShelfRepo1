@@ -209,6 +209,7 @@
             // 
             // SpecialButton
             // 
+            this.SpecialButton.BackColor = System.Drawing.Color.Aqua;
             this.SpecialButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.SpecialButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SpecialButton.Location = new System.Drawing.Point(354, 754);
@@ -217,7 +218,7 @@
             this.SpecialButton.TabIndex = 11;
             this.SpecialButton.Text = "SPECIAL";
             this.SpecialButton.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.SpecialButton.UseVisualStyleBackColor = true;
+            this.SpecialButton.UseVisualStyleBackColor = false;
             this.SpecialButton.Click += new System.EventHandler(this.SpecialButton_Click);
             // 
             // menuStrip1

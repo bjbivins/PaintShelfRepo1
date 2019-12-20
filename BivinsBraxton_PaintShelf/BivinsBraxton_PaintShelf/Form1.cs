@@ -18,10 +18,7 @@ namespace BivinsBraxton_PaintShelf
 {
     public partial class Home : Form
     {
-        WebClient apiConnection = new WebClient();
-        List<data> dataList = new List<data>();
-        MySqlConnection conn = new MySqlConnection();
-        DataTable theData = new DataTable();
+        WebClient apiConnection = new WebClient(); // API connection variable
 
         /// SKIZMO ///
         // FAKE //
@@ -39,20 +36,20 @@ namespace BivinsBraxton_PaintShelf
         // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/5UXWX7C5*BA?format=xml&modelyear=2011
 
 
-        string startingAPI = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/";
-        string midAPI = "?format=xml&modelyear=";
-        string VIN_API = "5UXWX7C5*BA";
-        string YEAR_API = "2011";
-        string apiEndPoint;
+        string startingAPI = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/"; // Begining Of API call
+        string midAPI = "?format=xml&modelyear="; // API search Data
+        string VIN_API = "5UXWX7C5*BA"; // VIN for VIN Decode
+        string YEAR_API = "2011"; // Year for VIN Decode
+        string apiEndPoint; // End of API Call
         //string make;
         //string model;
 
-        private void BuildAPI()
+        private void BuildAPI() // Build entire API String
         {
             apiEndPoint = startingAPI + VIN_API + midAPI + YEAR_API;
         }
 
-        private void ReadFromAPI()
+        private void ReadFromAPI() // Read Data From API String
         {
           //  make = "";
           //  model = "";
@@ -97,15 +94,15 @@ namespace BivinsBraxton_PaintShelf
 
         public Home()
         {
-            InitializeComponent();
-            HandleClientWindowSize();
-            BuildAPI();
-            ReadFromAPI();
+            InitializeComponent(); // Always First
+            HandleClientWindowSize(); // Background size modifier
+            BuildAPI(); // Build Api String
+            ReadFromAPI(); // Read data from API
 
             // MessageBox.Show("Make: " + make + "Model: " + model);
         }
 
-        void HandleClientWindowSize()
+        void HandleClientWindowSize() // Code Given for iPhone background
         {
             //Modify ONLY these float values
             float HeightValueToChange = 1.4f;
@@ -122,99 +119,91 @@ namespace BivinsBraxton_PaintShelf
             //this.Size = new Size(376, 720);
         }
 
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void RedButton_Click(object sender, EventArgs e)
+        private void RedButton_Click(object sender, EventArgs e) // Display all of stored paints classified as red
         {
             // 1 RED //
             PaintViewForm paintForm = new PaintViewForm(1);
             paintForm.ShowDialog();
         }
 
-        private void BlueButton_Click(object sender, EventArgs e)
+        private void BlueButton_Click(object sender, EventArgs e) // Display all of stored paints classified as blue
         {
             // 2 BLUE //
             PaintViewForm paintForm = new PaintViewForm(2);
             paintForm.ShowDialog();
         }
 
-        private void GreenButton_Click(object sender, EventArgs e)
+        private void GreenButton_Click(object sender, EventArgs e) // Display all of stored paints classified as green
         {
             // 3 GREEN //
             PaintViewForm paintForm = new PaintViewForm(3);
             paintForm.ShowDialog();
         }
 
-        private void YellowButton_Click(object sender, EventArgs e)
+        private void YellowButton_Click(object sender, EventArgs e) // Display all of stored paints classified as yellow
         {
             // 4 YELLOW //
             PaintViewForm paintForm = new PaintViewForm(4);
             paintForm.ShowDialog();
         }
 
-        private void PinkButton_Click(object sender, EventArgs e)
+        private void PinkButton_Click(object sender, EventArgs e) // Display all of stored paints classified as pink
         {
             // 5 PINK //
             PaintViewForm paintForm = new PaintViewForm(5);
             paintForm.ShowDialog();
         }
 
-        private void BlackButton_Click(object sender, EventArgs e)
+        private void BlackButton_Click(object sender, EventArgs e) // Display all of stored paints classified as black
         {
             // 6 BLACK //
             PaintViewForm paintForm = new PaintViewForm(6);
             paintForm.ShowDialog();
         }
 
-        private void GrayButton_Click(object sender, EventArgs e)
+        private void GrayButton_Click(object sender, EventArgs e) // Display all of stored paints classified as gray
         {
             // 7 GRAY //
             PaintViewForm paintForm = new PaintViewForm(7);
             paintForm.ShowDialog();
         }
 
-        private void SilverButton_Click(object sender, EventArgs e)
+        private void SilverButton_Click(object sender, EventArgs e) // Display all of stored paints classified as silver
         {
             // 8 SILVER //
             PaintViewForm paintForm = new PaintViewForm(8);
             paintForm.ShowDialog();
         }
 
-        private void OrangeButton_Click(object sender, EventArgs e)
+        private void OrangeButton_Click(object sender, EventArgs e) // Display all of stored paints classified as orange
         {
             // 9 ORANGE //
             PaintViewForm paintForm = new PaintViewForm(9);
             paintForm.ShowDialog();
         }
 
-        private void PurpleButton_Click(object sender, EventArgs e)
+        private void PurpleButton_Click(object sender, EventArgs e) // Display all of stored paints classified as purple
         {
             // 10 PURPLE //
             PaintViewForm paintForm = new PaintViewForm(10);
             paintForm.ShowDialog();
         }
 
-        private void WhiteButton_Click(object sender, EventArgs e)
+        private void WhiteButton_Click(object sender, EventArgs e) // Display all of stored paints classified as white
         {
             // 11 WHITE //
             PaintViewForm paintForm = new PaintViewForm(11);
             paintForm.ShowDialog();
         }
 
-        private void SpecialButton_Click(object sender, EventArgs e)
+        private void SpecialButton_Click(object sender, EventArgs e) // Display all of stored paints classified as special
         {
             // 12 SPECIAL //
             PaintViewForm paintForm = new PaintViewForm(12);
             paintForm.ShowDialog();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) // close application
         {
             this.Close();
         }
