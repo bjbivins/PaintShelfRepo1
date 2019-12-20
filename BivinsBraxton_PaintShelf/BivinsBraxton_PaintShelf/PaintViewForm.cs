@@ -91,13 +91,14 @@ namespace BivinsBraxton_PaintShelf
         private string BuildConnectionString(string database, string uid, string pword)
         {
             string serverIP = "";
+            string prt = "";
             try
             {
                 using (StreamReader sr = new StreamReader("C:\\VFW\\connect.txt")) // My VFW File
                 {
-                    serverIP = sr.ReadToEnd();
+                    serverIP = sr.ReadLine();
+                    prt = sr.ReadLine();
                 }
-                string prt = "3306";
                 return "server=" + serverIP + ";uid=" + uid +
                     ";pwd=" + pword + ";database=" + database + ";port=" + prt; // Connection String
             }

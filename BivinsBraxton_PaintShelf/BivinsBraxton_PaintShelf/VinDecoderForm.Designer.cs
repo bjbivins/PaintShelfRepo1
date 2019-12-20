@@ -258,7 +258,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "VinDecoderForm";
             this.Text = "VinDecoderForm";
-            this.Load += new System.EventHandler(this.VinDecoderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.YearUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

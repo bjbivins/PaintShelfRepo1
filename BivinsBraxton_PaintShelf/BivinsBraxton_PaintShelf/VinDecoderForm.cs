@@ -83,11 +83,6 @@ namespace BivinsBraxton_PaintShelf
             //this.Size = new Size(376, 720);
         }
 
-
-        private void VinDecoderForm_Load(object sender, EventArgs e)
-        {
-
-        }
         // TEST VIN and YEAR
         //2A8HR64X68R148067
         // 2008
@@ -138,7 +133,6 @@ namespace BivinsBraxton_PaintShelf
             }
 
             else { AddPaint.Enabled = false; }
-
         }
 
         private void AddPaint_Click(object sender, EventArgs e)
@@ -230,13 +224,15 @@ namespace BivinsBraxton_PaintShelf
         private string BuildConnectionString(string database, string uid, string pword)
         {
             string serverIP = "";
+            string prt = "";
             try
             {
                 using (StreamReader sr = new StreamReader("C:\\VFW\\connect.txt")) // My VFW File
                 {
-                    serverIP = sr.ReadToEnd();
+                    serverIP = sr.ReadLine();
+                    prt = sr.ReadLine();
                 }
-                string prt = "3306";
+                
                 return "server=" + serverIP + ";uid=" + uid +
                     ";pwd=" + pword + ";database=" + database + ";port=" + prt; // Connection String
             }
