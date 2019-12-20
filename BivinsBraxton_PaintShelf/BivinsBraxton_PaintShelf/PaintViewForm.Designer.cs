@@ -249,7 +249,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PaintViewForm";
             this.Text = "PaintViewForm";
-            this.Load += new System.EventHandler(this.PaintViewForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.YearUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
