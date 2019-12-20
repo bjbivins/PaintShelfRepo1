@@ -50,7 +50,7 @@
             // PaintInfo
             // 
             this.PaintInfo.FormattingEnabled = true;
-            this.PaintInfo.Location = new System.Drawing.Point(53, 162);
+            this.PaintInfo.Location = new System.Drawing.Point(55, 227);
             this.PaintInfo.Name = "PaintInfo";
             this.PaintInfo.Size = new System.Drawing.Size(572, 368);
             this.PaintInfo.TabIndex = 0;
@@ -59,15 +59,16 @@
             // colorLabel
             // 
             this.colorLabel.AutoSize = true;
-            this.colorLabel.Location = new System.Drawing.Point(160, 49);
+            this.colorLabel.Font = new System.Drawing.Font("Verdana", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colorLabel.Location = new System.Drawing.Point(269, 165);
             this.colorLabel.Name = "colorLabel";
-            this.colorLabel.Size = new System.Drawing.Size(31, 13);
+            this.colorLabel.Size = new System.Drawing.Size(128, 45);
             this.colorLabel.TabIndex = 1;
             this.colorLabel.Text = "Color";
             // 
             // MakeText
             // 
-            this.MakeText.Location = new System.Drawing.Point(102, 546);
+            this.MakeText.Location = new System.Drawing.Point(104, 611);
             this.MakeText.Name = "MakeText";
             this.MakeText.Size = new System.Drawing.Size(121, 20);
             this.MakeText.TabIndex = 2;
@@ -75,7 +76,7 @@
             // 
             // PntNameText
             // 
-            this.PntNameText.Location = new System.Drawing.Point(305, 572);
+            this.PntNameText.Location = new System.Drawing.Point(307, 637);
             this.PntNameText.Name = "PntNameText";
             this.PntNameText.Size = new System.Drawing.Size(121, 20);
             this.PntNameText.TabIndex = 3;
@@ -83,7 +84,7 @@
             // 
             // pntCodeText
             // 
-            this.pntCodeText.Location = new System.Drawing.Point(305, 546);
+            this.pntCodeText.Location = new System.Drawing.Point(307, 611);
             this.pntCodeText.Name = "pntCodeText";
             this.pntCodeText.Size = new System.Drawing.Size(121, 20);
             this.pntCodeText.TabIndex = 4;
@@ -92,7 +93,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 549);
+            this.label1.Location = new System.Drawing.Point(64, 614);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 7;
@@ -101,7 +102,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(62, 570);
+            this.label3.Location = new System.Drawing.Point(64, 635);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 9;
@@ -110,7 +111,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(237, 549);
+            this.label4.Location = new System.Drawing.Point(239, 614);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 10;
@@ -119,7 +120,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(237, 575);
+            this.label5.Location = new System.Drawing.Point(239, 640);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 11;
@@ -141,7 +142,7 @@
             "Purple",
             "White",
             "Special"});
-            this.ColorDrop.Location = new System.Drawing.Point(482, 546);
+            this.ColorDrop.Location = new System.Drawing.Point(484, 611);
             this.ColorDrop.Name = "ColorDrop";
             this.ColorDrop.Size = new System.Drawing.Size(121, 21);
             this.ColorDrop.TabIndex = 12;
@@ -150,7 +151,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(446, 549);
+            this.label2.Location = new System.Drawing.Point(448, 614);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 13;
@@ -159,7 +160,7 @@
             // EditButton
             // 
             this.EditButton.Enabled = false;
-            this.EditButton.Location = new System.Drawing.Point(102, 609);
+            this.EditButton.Location = new System.Drawing.Point(104, 674);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(121, 79);
             this.EditButton.TabIndex = 14;
@@ -169,7 +170,7 @@
             // 
             // YearUD
             // 
-            this.YearUD.Location = new System.Drawing.Point(103, 568);
+            this.YearUD.Location = new System.Drawing.Point(105, 633);
             this.YearUD.Maximum = new decimal(new int[] {
             2050,
             0,
@@ -192,7 +193,7 @@
             // AddButton
             // 
             this.AddButton.Enabled = false;
-            this.AddButton.Location = new System.Drawing.Point(275, 609);
+            this.AddButton.Location = new System.Drawing.Point(277, 674);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(120, 79);
             this.AddButton.TabIndex = 16;
@@ -203,7 +204,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Enabled = false;
-            this.DeleteButton.Location = new System.Drawing.Point(459, 609);
+            this.DeleteButton.Location = new System.Drawing.Point(461, 674);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(120, 79);
             this.DeleteButton.TabIndex = 17;

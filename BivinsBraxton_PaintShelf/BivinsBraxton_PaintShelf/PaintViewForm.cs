@@ -14,27 +14,26 @@ namespace BivinsBraxton_PaintShelf
 {
     public partial class PaintViewForm : Form
     {
-        MySqlConnection conn = new MySqlConnection();
-        DataTable theData = new DataTable();
-        string connectionString = "";
-        string uid = "dbremoteuser"; //"dbsAdmin";
-        string dbs = "paintshelf"; //"exampleDatabase";
-        string pas = "password";
-        string[] colors = new string[12] { "RED", "BLUE", "GREEN", "YELLOW", "PINK", "BLACK", "GRAY", "SILVER", "ORANGE", "PURPLE", "WHITE", "SPECIAL" };
-        int maxCount = 0;
+        MySqlConnection conn = new MySqlConnection(); // My Connection String
+        DataTable theData = new DataTable(); // My Data table to be filled with SQL Data
+        string connectionString = ""; // My Connection String
+        string uid = "dbremoteuser"; //"dbsAdmin"; // My User ID
+        string dbs = "paintshelf"; // My Database name
+        string pas = "password";   // My User ID Password
+        string[] colors = new string[12] { "RED", "BLUE", "GREEN", "YELLOW", "PINK", "BLACK", "GRAY", "SILVER", "ORANGE", "PURPLE", "WHITE", "SPECIAL" }; // Colors in Order 
 
 
         public PaintViewForm(int cid)
         {
-            InitializeComponent();
-            HandleClientWindowSize();
-            colorLabel.Text = colors[cid - 1];
-            connectionString = BuildConnectionString(dbs, uid, pas);
-            Connect(connectionString, dbs);
-            SelectColors(cid);
+            InitializeComponent(); // Always First
+            HandleClientWindowSize(); // Window Size Code
+            colorLabel.Text = colors[cid - 1]; // Text Label that shows the user what color thay are viewing
+            connectionString = BuildConnectionString(dbs, uid, pas); // Connection String construction
+            Connect(connectionString, dbs); // Connect to My Database
+            SelectColors(cid); // list of stored paints in color group chozen by user
         }
 
-        void HandleClientWindowSize()
+        void HandleClientWindowSize() // Code given for iPhone Screen Size
         {
             //Modify ONLY these float values
             float HeightValueToChange = 1.4f;
@@ -54,41 +53,40 @@ namespace BivinsBraxton_PaintShelf
 
         public void SelectColors(int cid)
         {
-            string completeString = "No Paint stored";
-            string sql = "SELECT Make, Year, PaintCode, PaintName, id FROM paints where ColorID = " + cid.ToString();
-            theData.Clear();
+            string completeString = "No Paint stored"; // Default Text
+            string sql = "SELECT Make, Year, PaintCode, PaintName, id FROM paints where ColorID = " + cid.ToString(); // Select statement to view stored paint
+            theData.Clear(); // clear sql data
             try
             {
-                MySqlDataAdapter adr = new MySqlDataAdapter(sql, conn);
+                MySqlDataAdapter adr = new MySqlDataAdapter(sql, conn); // My SQL Adapter
                 adr.SelectCommand.CommandType = CommandType.Text;
-                adr.Fill(theData);
-                int numberOfRecords = theData.Select().Length;
-                if (numberOfRecords > 0)
+                adr.Fill(theData); // Filling the data
+                int numberOfRecords = theData.Select().Length; // total items in my data for specified color
+                if (numberOfRecords > 0) // As long as there is one item, do the following
                 {
-                    completeString = "";
-                    for (int i = 0; i < numberOfRecords; i++)
+                    completeString = ""; // clear default
+                    for (int i = 0; i < numberOfRecords; i++) // iterate through records
                     {
-                        string make = theData.Rows[i]["Make"].ToString();
+                        string make = theData.Rows[i]["Make"].ToString(); // Store data in local variables
                         int year = 0;
                         int.TryParse(theData.Rows[i]["Year"].ToString(), out year);
                         string paintCode = theData.Rows[i]["PaintCode"].ToString();
                         string paintName = theData.Rows[i]["PaintName"].ToString();
                         int pID = 0;
                         int.TryParse(theData.Rows[i]["id"].ToString(), out pID);
-                        maxCount = numberOfRecords;
                         completeString = "Make: " + make +
                                           " Year: " + year +
                                           " Paint Code: " + paintCode +
                                           " Paint Name: " + paintName +
-                                          " id: " + pID;
-                        PaintInfo.Items.Add(completeString);
+                                          " id: " + pID; // display string
+                        PaintInfo.Items.Add(completeString); // Add paints to specified list
                     }
                 }
             }
 
             catch
             {
-                MessageBox.Show("FAILED");
+                MessageBox.Show("FAILED"); // error message
             }
         }
 
@@ -97,16 +95,16 @@ namespace BivinsBraxton_PaintShelf
             string serverIP = "";
             try
             {
-                using (StreamReader sr = new StreamReader("C:\\VFW\\connect.txt"))
+                using (StreamReader sr = new StreamReader("C:\\VFW\\connect.txt")) // My VFW File
                 {
                     serverIP = sr.ReadToEnd();
                 }
                 string prt = "3306";
                 return "server=" + serverIP + ";uid=" + uid +
-                    ";pwd=" + pword + ";database=" + database + ";port=" + prt;
+                    ";pwd=" + pword + ";database=" + database + ";port=" + prt; // Connection String
             }
 
-            catch (Exception e)
+            catch (Exception e) // Fail to connect message
             {
                 MessageBox.Show(e.ToString());
                 return "ERROR";
@@ -117,14 +115,13 @@ namespace BivinsBraxton_PaintShelf
         {
             try
             {
-                conn.ConnectionString = myConnectionString;
+                conn.ConnectionString = myConnectionString; // Connection Successful
                 conn.Open();
-                // connectStatus.Text = "Connected to: " + database;
             }
 
-            catch (MySqlException e)
+            catch (MySqlException e) // Connection Fail with messages
             {
-                string msg = "";
+                string msg = ""; 
 
                 switch (e.Number)
                 {
@@ -159,39 +156,34 @@ namespace BivinsBraxton_PaintShelf
         public void AddNewPaint(string make, int year, string paintCode, string paintName, int cid)
         {
             string sqlString = "insert into Paints ( Make, Year, PaintCode, PaintName, ColorID) values ('" +
-                make + "', " + year + ", '" + paintCode + "', '" + paintName + "', " + cid + ")";
-            if (conn.State == ConnectionState.Open)
+                make + "', " + year + ", '" + paintCode + "', '" + paintName + "', " + cid + ")"; // Add New Paint String
+            if (conn.State == ConnectionState.Open) // Close connection if open
             {
                 conn.Close();
             }
-            Connect(connectionString, dbs);
+            Connect(connectionString, dbs); // Connect
             try
             {
-                using (MySqlCommand comm = new MySqlCommand(sqlString, conn))
+                using (MySqlCommand comm = new MySqlCommand(sqlString, conn)) // Read SQL string
                 {
                     comm.ExecuteNonQuery();
                     conn.Close();
                 }
             }
 
-            catch
+            catch // Fail Message
             {
                 MessageBox.Show("ERROR");
             }
 
-            clearTexts();
+            clearTexts(); // Clear all textboxes and deable edit, add, delete buttons
         }
 
-        private void PaintViewForm_Load(object sender, EventArgs e)
+
+        private void PaintInfo_MouseDoubleClick(object sender, MouseEventArgs e) // If item is double clicked
         {
-
-        }
-
-        private void PaintInfo_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-            DataRow theRow = theData.Rows[0];
-            MakeText.Text = theRow["Make"].ToString();
+            DataRow theRow = theData.Rows[0]; // Current Row
+            MakeText.Text = theRow["Make"].ToString(); // Text box values are filled with selected item in list
             int year = 0;
             int.TryParse(theRow["Year"].ToString(), out year);
             YearUD.Value = year;
@@ -199,12 +191,12 @@ namespace BivinsBraxton_PaintShelf
             PntNameText.Text = theRow["PaintName"].ToString();
             ColorDrop.Text = colorLabel.Text;
 
-            EditButton.Enabled = true;
-            AddButton.Enabled = false;
-            DeleteButton.Enabled = true;
+            EditButton.Enabled = true; // unlock edit features
+            AddButton.Enabled = false; // Dont add the same paint
+            DeleteButton.Enabled = true; // unlock delete features
         }
 
-        private void clearTexts()
+        private void clearTexts() // clear all text boxes and lock all buttons
         {
             MakeText.Text = "";
             YearUD.Value = YearUD.Minimum;
@@ -222,16 +214,16 @@ namespace BivinsBraxton_PaintShelf
                     cid = i + 1;
                 }
             }
-            SelectColors(cid);
+            SelectColors(cid); // Refresh List box values
             PaintInfo.Refresh();
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
+        private void EditButton_Click(object sender, EventArgs e) // ability to edit a selected paint
         {
             int idd = 0;
             int colorID = 0;
 
-            for (int i = 0; i < colors.Length; i++)
+            for (int i = 0; i < colors.Length; i++) // iterate through colors to find color ID of paint
             {
                 if (ColorDrop.Text.ToUpper() == colors[i].ToString())
                 {
@@ -241,19 +233,19 @@ namespace BivinsBraxton_PaintShelf
                 }
             }
             string sqlString2 = "UPDATE Paints SET Make =@Make, Year = @Year," +
-                " PaintCode = @PaintCode, PaintName = @PaintName, ColorId = @ColorId WHERE id = @id;";
+                " PaintCode = @PaintCode, PaintName = @PaintName, ColorId = @ColorId WHERE id = @id;"; // Update sql statement
 
-            DataRow theRow = theData.Rows[0];
-            int.TryParse(theRow["id"].ToString(), out idd);
+            DataRow theRow = theData.Rows[0]; // Selected items row
+            int.TryParse(theRow["id"].ToString(), out idd); // get sql ID
 
-            if (conn.State == ConnectionState.Open)
+            if (conn.State == ConnectionState.Open) // Close connection
             {
                 conn.Close();
             }
-            Connect(connectionString, dbs);
+            Connect(connectionString, dbs); // Connect to database
             try
             {
-                using (MySqlCommand comm = new MySqlCommand(sqlString2, conn))
+                using (MySqlCommand comm = new MySqlCommand(sqlString2, conn)) // Run SQL statement
                 {
                     comm.Parameters.AddWithValue("@Make", MakeText.Text);
                     comm.Parameters.AddWithValue("@Year", YearUD.Value);
@@ -263,16 +255,15 @@ namespace BivinsBraxton_PaintShelf
                     comm.Parameters.AddWithValue("@id", idd);
                     comm.ExecuteNonQuery();
                     conn.Close();
-                    PaintInfo.Items.Remove(PaintInfo.SelectedItem);
+                    PaintInfo.Items.Remove(PaintInfo.SelectedItem); // Remove pre edited item
                 }
             }
 
             catch
             {
-                MessageBox.Show("ERROR");
+                MessageBox.Show("ERROR"); // Fail message
             }
-
-            clearTexts();
+            clearTexts(); // clear texts and lock buttons
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -293,7 +284,7 @@ namespace BivinsBraxton_PaintShelf
             AddNewPaint(MakeText.Text, year, pntCodeText.Text, PntNameText.Text, colorID);
         }
 
-        private void allFilled()
+        private void allFilled() // If all text boxes are filled and edit & delete button are locked, unlock add paint button to store a new item
         {
             if (EditButton.Enabled == false && DeleteButton.Enabled == false)
             {
@@ -312,49 +303,49 @@ namespace BivinsBraxton_PaintShelf
             }
         }
 
-        private void MakeText_TextChanged(object sender, EventArgs e)
+        private void MakeText_TextChanged(object sender, EventArgs e) // ensure make text is filled
+        {
+            allFilled();
+        } 
+
+        private void pntCodeText_TextChanged(object sender, EventArgs e) // ensure paint code text is filled
         {
             allFilled();
         }
 
-        private void pntCodeText_TextChanged(object sender, EventArgs e)
+        private void PntNameText_TextChanged(object sender, EventArgs e) // ensure paint name is filled
         {
             allFilled();
         }
 
-        private void PntNameText_TextChanged(object sender, EventArgs e)
+        private void ColorDrop_SelectedIndexChanged(object sender, EventArgs e) // ensure color dropdown has a value
         {
             allFilled();
         }
 
-        private void ColorDrop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            allFilled();
-        }
-
-        private void DeleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e) // Deletes item from database
         {
             int idd = 0;
-            DataRow theRow = theData.Rows[0];
+            DataRow theRow = theData.Rows[0]; // the current selected row
             int.TryParse(theRow["id"].ToString(), out idd);
-            string sqlString = "DELETE FROM paints WHERE id = " + idd + ";";
-            theData.Rows[0].Delete();
-            if (conn.State == ConnectionState.Open) { conn.Close(); }
-            Connect(connectionString, dbs);
+            string sqlString = "DELETE FROM paints WHERE id = " + idd + ";"; // delete sql string
+            theData.Rows[0].Delete(); // delete local data on selected row
+            if (conn.State == ConnectionState.Open) { conn.Close(); } // close connection
+            Connect(connectionString, dbs); // connect to database
             try
             {
-                using (MySqlCommand comm = new MySqlCommand(sqlString, conn))
+                using (MySqlCommand comm = new MySqlCommand(sqlString, conn)) // execute sql statement
                 {
                     comm.ExecuteNonQuery();
                     conn.Close();
                 }
             }
-            catch { MessageBox.Show("ERROR"); }
-            PaintInfo.Items.Remove(PaintInfo.SelectedItem);
-            clearTexts();
+            catch { MessageBox.Show("ERROR"); } // fail message
+            PaintInfo.Items.Remove(PaintInfo.SelectedItem); // remove selected item
+            clearTexts(); // clear texts and lock buttons
         }
 
-        private void HomeButton_Click(object sender, EventArgs e)
+        private void HomeButton_Click(object sender, EventArgs e) // close paint selection view form
         {
             this.Close();
         }
