@@ -234,7 +234,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoScroll = true;
+            this.BackgroundImage = global::BivinsBraxton_PaintShelf.Properties.Resources.iPhone7Image;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(671, 1061);
             this.Controls.Add(this.HomeButton);
             this.Controls.Add(this.AddPaint);
             this.Controls.Add(this.label7);
@@ -252,6 +255,7 @@
             this.Controls.Add(this.VinTText);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "VinDecoderForm";
             this.Text = "VinDecoderForm";
             this.Load += new System.EventHandler(this.VinDecoderForm_Load);
