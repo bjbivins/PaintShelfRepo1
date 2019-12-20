@@ -18,78 +18,11 @@ namespace BivinsBraxton_PaintShelf
 {
     public partial class Home : Form
     {
-        WebClient apiConnection = new WebClient(); // API connection variable
-
-        /// SKIZMO ///
-        // FAKE //
-        // http://vinapi.skizmo.com/vins/ 
-
-        /// FORTELLIS ///
-        // WAITING FOR AUTH CODE // DOESNT RETURN PAINT FROM VIN // 
-        // https://api.fortellis.io/service/reference/v4/vehicle-specifications/vins/{vin} 
-        // WAITING FOR AUTH CODE // ONLY CARS BEING SERVICED // 
-        // https://developer.fortellis.io/api-reference/vehicle-service/service-vehicle-specifications-api
-        // WAITING FOR AUTH CODE // ONLY CARS BEING SOLD // 
-        // https://api.fortellis.io/sales/inventory/v2/merchandisable-vehicles/
-
-        /// NHTSA ///
-        // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/5UXWX7C5*BA?format=xml&modelyear=2011
-
-
-        string startingAPI = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/"; // Begining Of API call
-        string midAPI = "?format=xml&modelyear="; // API search Data
-        string VIN_API = "5UXWX7C5*BA"; // VIN for VIN Decode
-        string YEAR_API = "2011"; // Year for VIN Decode
-        string apiEndPoint; // End of API Call
-        string make;
-        string model;
-
-        private void BuildAPI() // Build entire API String
-        {
-            apiEndPoint = startingAPI + VIN_API + midAPI + YEAR_API;
-        }
-
-        private void ReadFromAPI() // Read Data From API String
-        {
-            make = "";
-            model = "";
-            //string pnt_Code = "";
-            // string pnt_Name = "";
-
-            using (XmlReader apiData = XmlReader.Create(apiEndPoint))
-            {
-                while(apiData.Read())
-                {
-
-                    /*
-                        <DecodedVariable>
-                        <VariableId>26</VariableId>
-                        <Variable>Make</Variable>
-                        <ValueId>452</ValueId>
-                        <Value>BMW</Value>
-                        </DecodedVariable>
-                     */
-                    if (apiData.Name == "Make") // LANDS
-                    {
-                        make = apiData.ReadElementContentAsString();
-                    }
-
-                    if (apiData.Name == "Model")
-                    {
-                        model = apiData.ReadElementContentAsString();
-                    }
-                }
-            }
-        }
 
         public Home()
         {
             InitializeComponent(); // Always First
             HandleClientWindowSize(); // Background size modifier
-            BuildAPI(); // Build Api String
-            ReadFromAPI(); // Read data from API
-
-             MessageBox.Show("Make: " + make + " Model: " + model);
         }
 
         void HandleClientWindowSize() // Code Given for iPhone background
@@ -196,6 +129,12 @@ namespace BivinsBraxton_PaintShelf
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) // close application
         {
             this.Close();
+        }
+
+        private void vINDecodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VinDecoderForm VDF = new VinDecoderForm();
+            VDF.ShowDialog();
         }
     }
 }

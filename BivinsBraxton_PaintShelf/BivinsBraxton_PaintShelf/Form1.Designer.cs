@@ -253,6 +253,7 @@
             this.vINDecodeToolStripMenuItem.Name = "vINDecodeToolStripMenuItem";
             this.vINDecodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.vINDecodeToolStripMenuItem.Text = "VIN Decode";
+            this.vINDecodeToolStripMenuItem.Click += new System.EventHandler(this.vINDecodeToolStripMenuItem_Click);
             // 
             // Home
             // 
