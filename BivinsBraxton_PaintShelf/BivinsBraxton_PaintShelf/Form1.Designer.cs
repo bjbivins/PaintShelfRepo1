@@ -43,8 +43,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vINDecodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -223,8 +222,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.addPaintToolStripMenuItem});
+            this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(291, 24);
@@ -234,7 +232,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.vINDecodeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -244,21 +243,13 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // addPaintToolStripMenuItem
+            // vINDecodeToolStripMenuItem
             // 
-            this.addPaintToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newPaintToolStripMenuItem});
-            this.addPaintToolStripMenuItem.Name = "addPaintToolStripMenuItem";
-            this.addPaintToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.addPaintToolStripMenuItem.Text = "Add";
-            // 
-            // newPaintToolStripMenuItem
-            // 
-            this.newPaintToolStripMenuItem.Name = "newPaintToolStripMenuItem";
-            this.newPaintToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newPaintToolStripMenuItem.Text = "New Paint";
-            this.newPaintToolStripMenuItem.Click += new System.EventHandler(this.newPaintToolStripMenuItem_Click);
+            this.vINDecodeToolStripMenuItem.Name = "vINDecodeToolStripMenuItem";
+            this.vINDecodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vINDecodeToolStripMenuItem.Text = "VIN Decode";
             // 
             // Form1
             // 
@@ -306,8 +297,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addPaintToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newPaintToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vINDecodeToolStripMenuItem;
     }
 }
 

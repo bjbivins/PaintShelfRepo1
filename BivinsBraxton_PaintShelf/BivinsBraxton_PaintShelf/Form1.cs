@@ -22,12 +22,6 @@ namespace BivinsBraxton_PaintShelf
         List<data> dataList = new List<data>();
         MySqlConnection conn = new MySqlConnection();
         DataTable theData = new DataTable();
-        string connectionString = "";
-        int row = 0;
-        int maxCount = 0;
-        string uid = "dbremoteuser"; //"dbsAdmin";
-        string dbs = "paintshelf"; //"exampleDatabase";
-        string pas = "password";
 
         /// SKIZMO ///
         // FAKE //
@@ -50,72 +44,8 @@ namespace BivinsBraxton_PaintShelf
         string VIN_API = "5UXWX7C5*BA";
         string YEAR_API = "2011";
         string apiEndPoint;
-        string make;
-        string model;
-
-        private string BuildConnectionString(string database, string uid, string pword)
-        {
-            string serverIP = "";
-            try
-            {
-                using (StreamReader sr = new StreamReader("C:\\VFW\\connect.txt"))
-                {
-                    serverIP = sr.ReadToEnd();
-                }
-                string prt = "3306";
-                return "server=" + serverIP + ";uid=" + uid +
-                    ";pwd=" + pword + ";database=" + database + ";port=" + prt;
-            }
-
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
-                return "ERROR";
-            }
-        }
-
-        private void Connect(string myConnectionString, string database)
-        {
-            try
-            {
-                conn.ConnectionString = myConnectionString;
-                conn.Open();
-               // connectStatus.Text = "Connected to: " + database;
-            }
-
-            catch (MySqlException e)
-            {
-                string msg = "";
-
-                switch (e.Number)
-                {
-                    case 0:
-                        {
-                            msg = e.ToString();
-                            break;
-                        }
-
-                    case 1042:
-                        {
-                            msg = "Can't Resolve Host Address.\n" + myConnectionString;
-                            break;
-                        }
-
-                    case 1045:
-                        {
-                            msg = "Invalid Username or Password";
-                            break;
-                        }
-
-                    default:
-                        {
-                            msg = e.ToString() + "\n" + myConnectionString;
-                            break;
-                        }
-                }
-                MessageBox.Show(msg);
-            }
-        }
+        //string make;
+        //string model;
 
         private void BuildAPI()
         {
@@ -124,8 +54,8 @@ namespace BivinsBraxton_PaintShelf
 
         private void ReadFromAPI()
         {
-            make = "";
-            model = "";
+          //  make = "";
+          //  model = "";
             //string pnt_Code = "";
             // string pnt_Name = "";
 
@@ -133,14 +63,33 @@ namespace BivinsBraxton_PaintShelf
             {
                 while(apiData.Read())
                 {
-                    if (apiData.Name == "Make")
+                    // make = XmlConvert.DecodeName("156");
+                       // make = apiData.GetAttribute("Make");
+
+                    //apiData.GetAttribute("Make");
+                    
+                    //if (apiData.Name == "DecodedVariable")
+                    //{
+                    //    if (apiData.Value == "VariableId")
+                    //    {
+                    //    make = apiData.GetAttribute(26);
+
+                    //    MessageBox.Show(make);
+                    //    }
+                    //}
+
+
+                    if (apiData.Value == "Make")
                     {
-                        make = apiData.ReadElementContentAsString();
+
+                        //make = apiData.GetAttribute("Make").;
+                        //make = apiData.Name;
+                        
                     }
 
                     if (apiData.Name == "Model")
                     {
-                        model = apiData.ReadElementContentAsString();
+                      //  model = apiData.ReadElementContentAsString();
                     }
                 }
             }
@@ -149,12 +98,10 @@ namespace BivinsBraxton_PaintShelf
         public Form1()
         {
             InitializeComponent();
-            connectionString = BuildConnectionString(dbs, uid, pas);
-            Connect(connectionString, dbs);
-            //BuildAPI();
-            //ReadFromAPI();
+            BuildAPI();
+            ReadFromAPI();
 
-           // MessageBox.Show("Make: " + make + "Model: " + model);
+            // MessageBox.Show("Make: " + make + "Model: " + model);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -162,149 +109,95 @@ namespace BivinsBraxton_PaintShelf
 
         }
 
-        public void SelectColors(int cid)
-        {
-            string completeString = "No Paint stored";
-            string sql = "SELECT Make, Year, PaintCode, PaintName FROM paints where ColorID = " + cid.ToString();
 
-            try
-            {
-                MySqlDataAdapter adr = new MySqlDataAdapter(sql, conn);
-                adr.SelectCommand.CommandType = CommandType.Text;
-                adr.Fill(theData);
-                int numberOfRecords = theData.Select().Length;
-                if (numberOfRecords > 0)
-                {
-                    completeString = "";
-                    for (int i = 0; i < numberOfRecords; i++)
-                    {
-                        string make = theData.Rows[i]["Make"].ToString();
-                        int year = 0;
-                        int.TryParse(theData.Rows[i]["Year"].ToString(), out year);
-                        string paintCode = theData.Rows[i]["PaintCode"].ToString();
-                        string paintName = theData.Rows[i]["PaintName"].ToString();
-                        maxCount = numberOfRecords;
-
-                        completeString += "Make = " + make + "\n" +
-                                                "Year = " + year + "\n" +
-                                                "Paint Code = " + paintCode + "\n" +
-                                                "Paint Name = " + paintName + "\n\n";
-                    }
-                }
-            }
-
-            catch
-            {
-                completeString = "Connection to Database Failed";
-            }
-            MessageBox.Show(completeString);
-        }
 
         private void RedButton_Click(object sender, EventArgs e)
         {
             // 1 RED //
-            SelectColors(1);
+            PaintViewForm paintForm = new PaintViewForm(1);
+            paintForm.ShowDialog();
         }
 
         private void BlueButton_Click(object sender, EventArgs e)
         {
             // 2 BLUE //
-            SelectColors(2);
+            PaintViewForm paintForm = new PaintViewForm(2);
+            paintForm.ShowDialog();
         }
 
         private void GreenButton_Click(object sender, EventArgs e)
         {
             // 3 GREEN //
-            SelectColors(3);
+            PaintViewForm paintForm = new PaintViewForm(3);
+            paintForm.ShowDialog();
         }
 
         private void YellowButton_Click(object sender, EventArgs e)
         {
             // 4 YELLOW //
-            SelectColors(4);
+            PaintViewForm paintForm = new PaintViewForm(4);
+            paintForm.ShowDialog();
         }
 
         private void PinkButton_Click(object sender, EventArgs e)
         {
             // 5 PINK //
-            SelectColors(5);
+            PaintViewForm paintForm = new PaintViewForm(5);
+            paintForm.ShowDialog();
         }
 
         private void BlackButton_Click(object sender, EventArgs e)
         {
             // 6 BLACK //
-            SelectColors(6);
+            PaintViewForm paintForm = new PaintViewForm(6);
+            paintForm.ShowDialog();
         }
 
         private void GrayButton_Click(object sender, EventArgs e)
         {
             // 7 GRAY //
-            SelectColors(7);
+            PaintViewForm paintForm = new PaintViewForm(7);
+            paintForm.ShowDialog();
         }
 
         private void SilverButton_Click(object sender, EventArgs e)
         {
             // 8 SILVER //
-            SelectColors(8);
+            PaintViewForm paintForm = new PaintViewForm(8);
+            paintForm.ShowDialog();
         }
 
         private void OrangeButton_Click(object sender, EventArgs e)
         {
             // 9 ORANGE //
-            SelectColors(9);
+            PaintViewForm paintForm = new PaintViewForm(9);
+            paintForm.ShowDialog();
         }
 
         private void PurpleButton_Click(object sender, EventArgs e)
         {
             // 10 PURPLE //
-            SelectColors(10);
+            PaintViewForm paintForm = new PaintViewForm(10);
+            paintForm.ShowDialog();
         }
 
         private void WhiteButton_Click(object sender, EventArgs e)
         {
             // 11 WHITE //
-            SelectColors(11);
+            PaintViewForm paintForm = new PaintViewForm(11);
+            paintForm.ShowDialog();
         }
 
         private void SpecialButton_Click(object sender, EventArgs e)
         {
             // 12 SPECIAL //
-            SelectColors(12);
+            PaintViewForm paintForm = new PaintViewForm(12);
+            paintForm.ShowDialog();
         }
 
-        public void AddNewPaint(string make, int year, string paintCode, string paintName, int cid)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string sqlString = "insert into Paints ( Make, Year, PaintCode, PaintName, ColorID) values ('" + 
-                make + "', " + year + ", '" + paintCode + "', '" + paintName + "', " + cid + ")";
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-            Connect(connectionString, dbs);
-            try
-            {
-                using (MySqlCommand comm = new MySqlCommand(sqlString, conn))
-                {
-                    comm.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }
 
-            catch
-            {
-                MessageBox.Show("ERROR");
-            }
-        }
-
-        private void newPaintToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string make = "Dodge";
-            int year = 2017;
-            string paintCode = "PR4";
-            string paintName = "Hot Rod Red";
-            int colorId = 1;
-
-            AddNewPaint(make, year, paintCode, paintName, colorId);
         }
     }
 }
