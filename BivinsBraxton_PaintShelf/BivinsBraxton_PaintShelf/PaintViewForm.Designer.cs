@@ -43,15 +43,16 @@
             this.YearUD = new System.Windows.Forms.NumericUpDown();
             this.AddButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.HomeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.YearUD)).BeginInit();
             this.SuspendLayout();
             // 
             // PaintInfo
             // 
             this.PaintInfo.FormattingEnabled = true;
-            this.PaintInfo.Location = new System.Drawing.Point(12, 83);
+            this.PaintInfo.Location = new System.Drawing.Point(53, 162);
             this.PaintInfo.Name = "PaintInfo";
-            this.PaintInfo.Size = new System.Drawing.Size(417, 355);
+            this.PaintInfo.Size = new System.Drawing.Size(572, 368);
             this.PaintInfo.TabIndex = 0;
             this.PaintInfo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PaintInfo_MouseDoubleClick);
             // 
@@ -66,7 +67,7 @@
             // 
             // MakeText
             // 
-            this.MakeText.Location = new System.Drawing.Point(503, 83);
+            this.MakeText.Location = new System.Drawing.Point(102, 546);
             this.MakeText.Name = "MakeText";
             this.MakeText.Size = new System.Drawing.Size(121, 20);
             this.MakeText.TabIndex = 2;
@@ -74,7 +75,7 @@
             // 
             // PntNameText
             // 
-            this.PntNameText.Location = new System.Drawing.Point(503, 161);
+            this.PntNameText.Location = new System.Drawing.Point(305, 572);
             this.PntNameText.Name = "PntNameText";
             this.PntNameText.Size = new System.Drawing.Size(121, 20);
             this.PntNameText.TabIndex = 3;
@@ -82,7 +83,7 @@
             // 
             // pntCodeText
             // 
-            this.pntCodeText.Location = new System.Drawing.Point(503, 135);
+            this.pntCodeText.Location = new System.Drawing.Point(305, 546);
             this.pntCodeText.Name = "pntCodeText";
             this.pntCodeText.Size = new System.Drawing.Size(121, 20);
             this.pntCodeText.TabIndex = 4;
@@ -91,7 +92,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(435, 86);
+            this.label1.Location = new System.Drawing.Point(62, 549);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 7;
@@ -100,7 +101,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(435, 112);
+            this.label3.Location = new System.Drawing.Point(62, 570);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 9;
@@ -109,7 +110,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(435, 138);
+            this.label4.Location = new System.Drawing.Point(237, 549);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 10;
@@ -118,7 +119,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(435, 164);
+            this.label5.Location = new System.Drawing.Point(237, 575);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 11;
@@ -140,7 +141,7 @@
             "Purple",
             "White",
             "Special"});
-            this.ColorDrop.Location = new System.Drawing.Point(503, 187);
+            this.ColorDrop.Location = new System.Drawing.Point(482, 546);
             this.ColorDrop.Name = "ColorDrop";
             this.ColorDrop.Size = new System.Drawing.Size(121, 21);
             this.ColorDrop.TabIndex = 12;
@@ -149,7 +150,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(439, 190);
+            this.label2.Location = new System.Drawing.Point(446, 549);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 13;
@@ -158,9 +159,9 @@
             // EditButton
             // 
             this.EditButton.Enabled = false;
-            this.EditButton.Location = new System.Drawing.Point(503, 214);
+            this.EditButton.Location = new System.Drawing.Point(102, 609);
             this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(121, 23);
+            this.EditButton.Size = new System.Drawing.Size(121, 79);
             this.EditButton.TabIndex = 14;
             this.EditButton.Text = "Edit";
             this.EditButton.UseVisualStyleBackColor = true;
@@ -168,7 +169,7 @@
             // 
             // YearUD
             // 
-            this.YearUD.Location = new System.Drawing.Point(504, 105);
+            this.YearUD.Location = new System.Drawing.Point(103, 568);
             this.YearUD.Maximum = new decimal(new int[] {
             2050,
             0,
@@ -191,9 +192,9 @@
             // AddButton
             // 
             this.AddButton.Enabled = false;
-            this.AddButton.Location = new System.Drawing.Point(504, 243);
+            this.AddButton.Location = new System.Drawing.Point(275, 609);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(120, 23);
+            this.AddButton.Size = new System.Drawing.Size(120, 79);
             this.AddButton.TabIndex = 16;
             this.AddButton.Text = "Add Paint";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -202,19 +203,33 @@
             // DeleteButton
             // 
             this.DeleteButton.Enabled = false;
-            this.DeleteButton.Location = new System.Drawing.Point(504, 272);
+            this.DeleteButton.Location = new System.Drawing.Point(459, 609);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(120, 23);
+            this.DeleteButton.Size = new System.Drawing.Size(120, 79);
             this.DeleteButton.TabIndex = 17;
             this.DeleteButton.Text = "Delete Paint";
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
+            // HomeButton
+            // 
+            this.HomeButton.Location = new System.Drawing.Point(275, 815);
+            this.HomeButton.Name = "HomeButton";
+            this.HomeButton.Size = new System.Drawing.Size(120, 87);
+            this.HomeButton.TabIndex = 18;
+            this.HomeButton.Text = "Home\r\n";
+            this.HomeButton.UseVisualStyleBackColor = true;
+            this.HomeButton.Click += new System.EventHandler(this.HomeButton_Click);
+            // 
             // PaintViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoScroll = true;
+            this.BackgroundImage = global::BivinsBraxton_PaintShelf.Properties.Resources.iPhone7Image;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(671, 1061);
+            this.Controls.Add(this.HomeButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.YearUD);
@@ -230,6 +245,7 @@
             this.Controls.Add(this.MakeText);
             this.Controls.Add(this.colorLabel);
             this.Controls.Add(this.PaintInfo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PaintViewForm";
             this.Text = "PaintViewForm";
             this.Load += new System.EventHandler(this.PaintViewForm_Load);
@@ -256,5 +272,6 @@
         private System.Windows.Forms.NumericUpDown YearUD;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button HomeButton;
     }
 }

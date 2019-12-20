@@ -27,11 +27,30 @@ namespace BivinsBraxton_PaintShelf
         public PaintViewForm(int cid)
         {
             InitializeComponent();
+            HandleClientWindowSize();
             colorLabel.Text = colors[cid - 1];
             connectionString = BuildConnectionString(dbs, uid, pas);
             Connect(connectionString, dbs);
             SelectColors(cid);
         }
+
+        void HandleClientWindowSize()
+        {
+            //Modify ONLY these float values
+            float HeightValueToChange = 1.4f;
+            float WidthValueToChange = 6.0f;
+
+            //DO NOT MODIFY THIS CODE
+            int height = Convert.ToInt32(Screen.PrimaryScreen.WorkingArea.Size.Height / HeightValueToChange);
+            int width = Convert.ToInt32(Screen.PrimaryScreen.WorkingArea.Size.Width / WidthValueToChange);
+            if (height < Size.Height)
+                height = Size.Height;
+            if (width < Size.Width)
+                width = Size.Width;
+            this.Size = new Size(width, height);
+            //this.Size = new Size(376, 720);
+        }
+
 
         public void SelectColors(int cid)
         {
@@ -333,6 +352,11 @@ namespace BivinsBraxton_PaintShelf
             catch { MessageBox.Show("ERROR"); }
             PaintInfo.Items.Remove(PaintInfo.SelectedItem);
             clearTexts();
+        }
+
+        private void HomeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

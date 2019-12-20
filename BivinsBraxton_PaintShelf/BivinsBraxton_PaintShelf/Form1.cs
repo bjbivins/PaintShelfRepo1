@@ -16,7 +16,7 @@ using MySql.Data.MySqlClient;
 
 namespace BivinsBraxton_PaintShelf
 {
-    public partial class Form1 : Form
+    public partial class Home : Form
     {
         WebClient apiConnection = new WebClient();
         List<data> dataList = new List<data>();
@@ -95,14 +95,33 @@ namespace BivinsBraxton_PaintShelf
             }
         }
 
-        public Form1()
+        public Home()
         {
             InitializeComponent();
+            HandleClientWindowSize();
             BuildAPI();
             ReadFromAPI();
 
             // MessageBox.Show("Make: " + make + "Model: " + model);
         }
+
+        void HandleClientWindowSize()
+        {
+            //Modify ONLY these float values
+            float HeightValueToChange = 1.4f;
+            float WidthValueToChange = 6.0f;
+
+            //DO NOT MODIFY THIS CODE
+            int height = Convert.ToInt32(Screen.PrimaryScreen.WorkingArea.Size.Height / HeightValueToChange);
+            int width = Convert.ToInt32(Screen.PrimaryScreen.WorkingArea.Size.Width / WidthValueToChange);
+            if (height < Size.Height)
+                height = Size.Height;
+            if (width < Size.Width)
+                width = Size.Width;
+            this.Size = new Size(width, height);
+            //this.Size = new Size(376, 720);
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -197,7 +216,7 @@ namespace BivinsBraxton_PaintShelf
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }
