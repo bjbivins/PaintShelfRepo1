@@ -21,7 +21,6 @@ namespace BivinsBraxton_PaintShelf
         string make = "";
         string model = "";
         string paintCode = "";
-
         MySqlConnection conn = new MySqlConnection(); // My Connection String
         DataTable theData = new DataTable(); // My Data table to be filled with SQL Data
         string connectionString = ""; // My Connection String
@@ -30,8 +29,6 @@ namespace BivinsBraxton_PaintShelf
         string pas = "password";   // My User ID Password
         string[] colors = new string[12] { "RED", "BLUE", "GREEN", "YELLOW", "PINK", "BLACK", "GRAY", "SILVER", "ORANGE", "PURPLE", "WHITE", "SPECIAL" }; // Colors in Order 
 
-
-
         private void BuildAPI(string vin, string year) // Build entire API String
         {
             apiEndPoint = startingAPI + vin + midAPI + year;
@@ -39,24 +36,21 @@ namespace BivinsBraxton_PaintShelf
 
         private void ReadFromAPI() // Read Data From API String
         {
-            //string pnt_Code = "";
-            // string pnt_Name = "";
-
-            using (XmlReader apiData = XmlReader.Create(apiEndPoint))
+            using (XmlReader apiData = XmlReader.Create(apiEndPoint)) // Create XML Reader
             {
-                while (apiData.Read())
+                while (apiData.Read()) // Read XML
                 {
-                    if (apiData.Name == "Make")
+                    if (apiData.Name == "Make") // retrieve make from API
                     {
                         make = apiData.ReadElementContentAsString();
                     }
 
-                    if (apiData.Name == "Model")
+                    if (apiData.Name == "Model") // retrieve model from API
                     {
                         model = apiData.ReadElementContentAsString();
                     }
 
-                    if (apiData.Name == "ManufacturerId")
+                    if (apiData.Name == "ManufacturerId") // retrieve paint code from API
                     {
                         paintCode = apiData.ReadElementContentAsString();
                     }
@@ -75,12 +69,12 @@ namespace BivinsBraxton_PaintShelf
         {
 
         }
-
+        // TEST VIN and YEAR
         //2A8HR64X68R148067
         // 2008
         public void DecodeVin()
         {
-            if (VinTText.Text != "")
+            if (VinTText.Text != "") // Unlock vid decode button
             {
                 vinDecodeButton.Enabled = true;
             }
@@ -88,18 +82,18 @@ namespace BivinsBraxton_PaintShelf
 
         private void vinDecodeButton_Click(object sender, EventArgs e)
         {
-            BuildAPI(VinTText.Text, YearUD.Value.ToString());
-            ReadFromAPI();
-            makeText.Text = make;
+            BuildAPI(VinTText.Text, YearUD.Value.ToString()); // Build API String
+            ReadFromAPI(); // read data from API
+            makeText.Text = make; // set local variables to data from API
             modelText.Text = model;
             PaintCodeText.Text = paintCode;
-            PaintNameText.Enabled = true;
+            PaintNameText.Enabled = true; // Unlock paint name and color choices
             colorDrop.Enabled = true;
         }
 
-        private void VinTText_TextChanged(object sender, EventArgs e)
+        private void VinTText_TextChanged(object sender, EventArgs e) // When clicked, run vin decoder
         {
-            DecodeVin();
+            DecodeVin(); 
         }
 
         private void YearUD_ValueChanged(object sender, EventArgs e)
@@ -107,7 +101,7 @@ namespace BivinsBraxton_PaintShelf
 
         }
 
-        private void PaintNameText_TextChanged(object sender, EventArgs e)
+        private void PaintNameText_TextChanged(object sender, EventArgs e) // Add Paint name and color category to successfully add to database
         {
             if (PaintNameText.Text != "" && colorDrop.Text != "")
             {
@@ -117,7 +111,7 @@ namespace BivinsBraxton_PaintShelf
             else { AddPaint.Enabled = false; }
         }
 
-        private void colorDrop_SelectedIndexChanged(object sender, EventArgs e)
+        private void colorDrop_SelectedIndexChanged(object sender, EventArgs e) // Add Paint name and color category to successfully add to database
         {
             if (PaintNameText.Text != "" && colorDrop.Text != "")
             {
@@ -136,14 +130,14 @@ namespace BivinsBraxton_PaintShelf
 
             for (int i = 0; i < colors.Length; i++)
             {
-                if (colorDrop.Text.ToUpper() == colors[i].ToString())
+                if (colorDrop.Text.ToUpper() == colors[i].ToString()) // Get Correct color category
                 {
                     int theI = 0;
                     theI = i + 1;
                     colorID = theI;
                 }
             }
-            AddNewPaint(makeText.Text, year, PaintCodeText.Text, PaintNameText.Text, colorID);
+            AddNewPaint(makeText.Text, year, PaintCodeText.Text, PaintNameText.Text, colorID); // Add new paint to database
         }
 
         public void AddNewPaint(string make, int year, string paintCode, string paintName, int cid)
@@ -250,7 +244,7 @@ namespace BivinsBraxton_PaintShelf
 
         private void HomeButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close(); // close dialog box
         }
     }
 }
