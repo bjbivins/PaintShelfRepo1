@@ -22,7 +22,6 @@ namespace BivinsBraxton_PaintShelf
         string pas = "password";   // My User ID Password
         string[] colors = new string[12] { "RED", "BLUE", "GREEN", "YELLOW", "PINK", "BLACK", "GRAY", "SILVER", "ORANGE", "PURPLE", "WHITE", "SPECIAL" }; // Colors in Order 
 
-
         public PaintViewForm(int cid)
         {
             InitializeComponent(); // Always First
@@ -49,7 +48,6 @@ namespace BivinsBraxton_PaintShelf
             this.Size = new Size(width, height);
             //this.Size = new Size(376, 720);
         }
-
 
         public void SelectColors(int cid)
         {
@@ -178,7 +176,6 @@ namespace BivinsBraxton_PaintShelf
 
             clearTexts(); // Clear all textboxes and deable edit, add, delete buttons
         }
-
 
         private void PaintInfo_MouseDoubleClick(object sender, MouseEventArgs e) // If item is double clicked
         {

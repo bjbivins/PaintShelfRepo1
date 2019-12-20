@@ -9,21 +9,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace BivinsBraxton_PaintShelf
 {
     public partial class VinDecoderForm : Form
     {
-        //WebClient apiConnection = new WebClient(); // API connection variable
-
         string startingAPI = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/"; // Begining Of API call
         string midAPI = "*BA?format=xml&modelyear="; // API search Data
-        //string VIN_API = "5UXWX7C5"; // VIN for VIN Decode
-        //string YEAR_API = "2011"; // Year for VIN Decode
         string apiEndPoint; // End of API Call
         string make = "";
         string model = "";
         string paintCode = "";
+
+        MySqlConnection conn = new MySqlConnection(); // My Connection String
+        DataTable theData = new DataTable(); // My Data table to be filled with SQL Data
+        string connectionString = ""; // My Connection String
+        string uid = "dbremoteuser"; //"dbsAdmin"; // My User ID
+        string dbs = "paintshelf"; // My Database name
+        string pas = "password";   // My User ID Password
+        string[] colors = new string[12] { "RED", "BLUE", "GREEN", "YELLOW", "PINK", "BLACK", "GRAY", "SILVER", "ORANGE", "PURPLE", "WHITE", "SPECIAL" }; // Colors in Order 
+
+
 
         private void BuildAPI(string vin, string year) // Build entire API String
         {
@@ -60,6 +67,8 @@ namespace BivinsBraxton_PaintShelf
         public VinDecoderForm()
         {
             InitializeComponent();
+            connectionString = BuildConnectionString(dbs, uid, pas); // Connection String construction
+            Connect(connectionString, dbs); // Connect to My Database
         }
 
         private void VinDecoderForm_Load(object sender, EventArgs e)
@@ -117,6 +126,131 @@ namespace BivinsBraxton_PaintShelf
 
             else { AddPaint.Enabled = false; }
 
+        }
+
+        private void AddPaint_Click(object sender, EventArgs e)
+        {
+            int year = 0;
+            int.TryParse(YearUD.Value.ToString(), out year);
+            int colorID = 0;
+
+            for (int i = 0; i < colors.Length; i++)
+            {
+                if (colorDrop.Text.ToUpper() == colors[i].ToString())
+                {
+                    int theI = 0;
+                    theI = i + 1;
+                    colorID = theI;
+                }
+            }
+            AddNewPaint(makeText.Text, year, PaintCodeText.Text, PaintNameText.Text, colorID);
+        }
+
+        public void AddNewPaint(string make, int year, string paintCode, string paintName, int cid)
+        {
+            string sqlString = "insert into Paints ( Make, Year, PaintCode, PaintName, ColorID) values ('" +
+                make + "', " + year + ", '" + paintCode + "', '" + paintName + "', " + cid + ")"; // Add New Paint String
+            if (conn.State == ConnectionState.Open) // Close connection if open
+            {
+                conn.Close();
+            }
+            Connect(connectionString, dbs); // Connect
+            try
+            {
+                using (MySqlCommand comm = new MySqlCommand(sqlString, conn)) // Read SQL string
+                {
+                    comm.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+
+            catch // Fail Message
+            {
+                MessageBox.Show("ERROR");
+            }
+
+            clearTexts(); // Clear all textboxes and deable edit, add, delete buttons
+        }
+
+        private void Connect(string myConnectionString, string database)
+        {
+            try
+            {
+                conn.ConnectionString = myConnectionString; // Connection Successful
+                conn.Open();
+            }
+
+            catch (MySqlException e) // Connection Fail with messages
+            {
+                string msg = "";
+
+                switch (e.Number)
+                {
+                    case 0:
+                        {
+                            msg = e.ToString();
+                            break;
+                        }
+
+                    case 1042:
+                        {
+                            msg = "Can't Resolve Host Address.\n" + myConnectionString;
+                            break;
+                        }
+
+                    case 1045:
+                        {
+                            msg = "Invalid Username or Password";
+                            break;
+                        }
+
+                    default:
+                        {
+                            msg = e.ToString() + "\n" + myConnectionString;
+                            break;
+                        }
+                }
+                MessageBox.Show(msg);
+            }
+        }
+
+        private string BuildConnectionString(string database, string uid, string pword)
+        {
+            string serverIP = "";
+            try
+            {
+                using (StreamReader sr = new StreamReader("C:\\VFW\\connect.txt")) // My VFW File
+                {
+                    serverIP = sr.ReadToEnd();
+                }
+                string prt = "3306";
+                return "server=" + serverIP + ";uid=" + uid +
+                    ";pwd=" + pword + ";database=" + database + ";port=" + prt; // Connection String
+            }
+
+            catch (Exception e) // Fail to connect message
+            {
+                MessageBox.Show(e.ToString());
+                return "ERROR";
+            }
+        }
+
+        private void clearTexts() // clear all text boxes and lock all buttons
+        {
+            VinTText.Text = "";
+            YearUD.Value = YearUD.Minimum;
+            makeText.Text = "";
+            modelText.Text = "";
+            PaintCodeText.Text = "";
+            PaintNameText.Text = "";
+            colorDrop.Text = "";
+            vinDecodeButton.Enabled = false;
+            AddPaint.Enabled = false;
+        }
+
+        private void HomeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

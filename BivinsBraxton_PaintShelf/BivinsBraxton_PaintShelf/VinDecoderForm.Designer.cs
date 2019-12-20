@@ -44,6 +44,7 @@
             this.colorDrop = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.AddPaint = new System.Windows.Forms.Button();
+            this.HomeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.YearUD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,12 +218,24 @@
             this.AddPaint.TabIndex = 17;
             this.AddPaint.Text = "Add Paint";
             this.AddPaint.UseVisualStyleBackColor = true;
+            this.AddPaint.Click += new System.EventHandler(this.AddPaint_Click);
+            // 
+            // HomeButton
+            // 
+            this.HomeButton.Location = new System.Drawing.Point(216, 317);
+            this.HomeButton.Name = "HomeButton";
+            this.HomeButton.Size = new System.Drawing.Size(121, 23);
+            this.HomeButton.TabIndex = 18;
+            this.HomeButton.Text = "Home";
+            this.HomeButton.UseVisualStyleBackColor = true;
+            this.HomeButton.Click += new System.EventHandler(this.HomeButton_Click);
             // 
             // VinDecoderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.HomeButton);
             this.Controls.Add(this.AddPaint);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.colorDrop);
@@ -266,5 +279,6 @@
         private System.Windows.Forms.ComboBox colorDrop;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button AddPaint;
+        private System.Windows.Forms.Button HomeButton;
     }
 }
