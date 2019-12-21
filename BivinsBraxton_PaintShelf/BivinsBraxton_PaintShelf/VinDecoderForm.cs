@@ -24,7 +24,7 @@ namespace BivinsBraxton_PaintShelf
         MySqlConnection conn = new MySqlConnection(); // My Connection String
         DataTable theData = new DataTable(); // My Data table to be filled with SQL Data
         string connectionString = ""; // My Connection String
-        string uid = "dbremoteuser";//"dbsAdmin"; // My User ID
+        string uid = "dbsAdmin"; // My User ID
         string dbs = "paintshelf"; // My Database name
         string pas = "password";   // My User ID Password
         string[] colors = new string[12] { "RED", "BLUE", "GREEN", "YELLOW", "PINK", "BLACK", "GRAY", "SILVER", "ORANGE", "PURPLE", "WHITE", "SPECIAL" }; // Colors in Order 
