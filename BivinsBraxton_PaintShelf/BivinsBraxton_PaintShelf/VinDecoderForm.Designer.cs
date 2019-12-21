@@ -179,6 +179,7 @@
             // 
             // colorDrop
             // 
+            this.colorDrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.colorDrop.Enabled = false;
             this.colorDrop.FormattingEnabled = true;
             this.colorDrop.Items.AddRange(new object[] {

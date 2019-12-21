@@ -228,7 +228,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(112, 166);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(45, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(165, 24);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -244,6 +244,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
@@ -251,6 +252,7 @@
             // vINDecodeToolStripMenuItem
             // 
             this.vINDecodeToolStripMenuItem.Name = "vINDecodeToolStripMenuItem";
+            this.vINDecodeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.vINDecodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.vINDecodeToolStripMenuItem.Text = "VIN Decode";
             this.vINDecodeToolStripMenuItem.Click += new System.EventHandler(this.vINDecodeToolStripMenuItem_Click);

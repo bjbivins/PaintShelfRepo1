@@ -18,7 +18,6 @@ namespace BivinsBraxton_PaintShelf
 {
     public partial class Home : Form
     {
-
         public Home()
         {
             InitializeComponent(); // Always First

@@ -49,6 +49,7 @@
             // 
             // PaintInfo
             // 
+            this.PaintInfo.Enabled = false;
             this.PaintInfo.FormattingEnabled = true;
             this.PaintInfo.Location = new System.Drawing.Point(55, 227);
             this.PaintInfo.Name = "PaintInfo";
@@ -128,6 +129,7 @@
             // 
             // ColorDrop
             // 
+            this.ColorDrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ColorDrop.FormattingEnabled = true;
             this.ColorDrop.Items.AddRange(new object[] {
             "Red",

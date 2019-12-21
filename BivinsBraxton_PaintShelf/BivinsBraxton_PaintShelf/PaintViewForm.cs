@@ -62,6 +62,7 @@ namespace BivinsBraxton_PaintShelf
                 int numberOfRecords = theData.Select().Length; // total items in my data for specified color
                 if (numberOfRecords > 0) // As long as there is one item, do the following
                 {
+                    PaintInfo.Enabled = true;
                     completeString = ""; // clear default
                     for (int i = 0; i < numberOfRecords; i++) // iterate through records
                     {
@@ -80,6 +81,8 @@ namespace BivinsBraxton_PaintShelf
                         PaintInfo.Items.Add(completeString); // Add paints to specified list
                     }
                 }
+
+                else { PaintInfo.Enabled = false; }
             }
 
             catch
@@ -180,22 +183,26 @@ namespace BivinsBraxton_PaintShelf
 
         private void PaintInfo_MouseDoubleClick(object sender, MouseEventArgs e) // If item is double clicked
         {
-            DataRow theRow = theData.Rows[0]; // Current Row
-            MakeText.Text = theRow["Make"].ToString(); // Text box values are filled with selected item in list
-            int year = 0;
-            int.TryParse(theRow["Year"].ToString(), out year);
-            YearUD.Value = year;
-            pntCodeText.Text = theRow["PaintCode"].ToString();
-            PntNameText.Text = theRow["PaintName"].ToString();
-            ColorDrop.Text = colorLabel.Text;
+            if (PaintInfo.SelectedIndex >= 0)
+            {
+                DataRow theRow = theData.Rows[PaintInfo.SelectedIndex]; // Current Row
+                MakeText.Text = theRow["Make"].ToString(); // Text box values are filled with selected item in list
+                int year = 0;
+                int.TryParse(theRow["Year"].ToString(), out year);
+                YearUD.Value = year;
+                pntCodeText.Text = theRow["PaintCode"].ToString();
+                PntNameText.Text = theRow["PaintName"].ToString();
+                ColorDrop.Text = colorLabel.Text;
 
-            EditButton.Enabled = true; // unlock edit features
-            AddButton.Enabled = false; // Dont add the same paint
-            DeleteButton.Enabled = true; // unlock delete features
+                EditButton.Enabled = true; // unlock edit features
+                AddButton.Enabled = false; // Dont add the same paint
+                DeleteButton.Enabled = true; // unlock delete features
+            }
         }
 
         private void clearTexts() // clear all text boxes and lock all buttons
         {
+            PaintInfo.Items.Clear();
             MakeText.Text = "";
             YearUD.Value = YearUD.Minimum;
             pntCodeText.Text = "";
@@ -233,7 +240,7 @@ namespace BivinsBraxton_PaintShelf
             string sqlString2 = "UPDATE Paints SET Make =@Make, Year = @Year," +
                 " PaintCode = @PaintCode, PaintName = @PaintName, ColorId = @ColorId WHERE id = @id;"; // Update sql statement
 
-            DataRow theRow = theData.Rows[0]; // Selected items row
+            DataRow theRow = theData.Rows[PaintInfo.SelectedIndex]; // Selected items row
             int.TryParse(theRow["id"].ToString(), out idd); // get sql ID
 
             if (conn.State == ConnectionState.Open) // Close connection
@@ -324,7 +331,7 @@ namespace BivinsBraxton_PaintShelf
         private void DeleteButton_Click(object sender, EventArgs e) // Deletes item from database
         {
             int idd = 0;
-            DataRow theRow = theData.Rows[0]; // the current selected row
+            DataRow theRow = theData.Rows[PaintInfo.SelectedIndex]; // the current selected row
             int.TryParse(theRow["id"].ToString(), out idd);
             string sqlString = "DELETE FROM paints WHERE id = " + idd + ";"; // delete sql string
             theData.Rows[0].Delete(); // delete local data on selected row
